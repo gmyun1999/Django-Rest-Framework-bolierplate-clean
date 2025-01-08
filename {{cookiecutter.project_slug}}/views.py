@@ -7,6 +7,7 @@ from {{ cookiecutter.project_slug }}.settings import ENV
 
 
 class HealthChecker(APIView):
+    print(cookiecutter.project_slug)
     def get(self, request):
         return JsonResponse(
             data={"status": "success", "ENV": ENV},
