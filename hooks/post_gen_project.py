@@ -122,9 +122,10 @@ def handle_dependency_tool():
     update_dependency_version(selected_dependencies)
 
     tool = "{{ cookiecutter.dependency_tool }}"
+    print("tool, ", tool)
     try:
         if tool == "1 (pip)":
-            print("Using pip. Generating requirements.txt...")
+            print("Using pip. Generating requirements.txt..."s)
             confirm_and_install_dependencies(selected_dependencies)
             generate_requirements(selected_dependencies)
             subprocess.run(["pip", "install", *[f"{name}=={version}" for name, version in selected_dependencies.items()]], check=True)
