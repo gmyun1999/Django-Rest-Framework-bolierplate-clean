@@ -149,5 +149,10 @@ def handle_dependency_tool():
         sys.exit(1)
 
 if __name__ == "__main__":
+    print("{{cookiecutter.project_slug}}")
+    print("{{cookiecutter.project_name}}")
+    print("{{cookiecutter.django_version}}")
+    print("{{cookiecutter.db_engine}}")
+    print("{{cookiecutter.dependency_tool}}")
     if "{{ cookiecutter.dependency_tool }}" != "4 (None)":
         handle_dependency_tool()
