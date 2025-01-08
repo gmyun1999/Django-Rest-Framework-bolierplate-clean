@@ -1,7 +1,7 @@
 {
-  "project_slug": "my_django_project",
+  "project_slug": "(to be config name)",
   "project_name": "macro_be",
-  "app_name": "macro_sheet",
   "django_version": "5.0.6",
-  "db_engine": ["1 (PostgreSQL)", "2 (MySQL)", "3 (MongoDB)"]
+  "db_engine": ["1 (PostgreSQL)", "2 (MySQL)", "3 (MongoDB)"],
+  "dependency_tool": ["1 (pip)", "2 (poetry)", "3 (pipenv)", "4 (None)"]
 }
