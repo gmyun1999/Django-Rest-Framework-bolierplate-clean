@@ -104,6 +104,7 @@ def install_pipenv():
         print("Pipenv installation completed.")
 
 def handle_dependency_tool():
+    """Handle dependency tool based on user selection."""
     print("Do you want to install:")
     print("1. Minimum Dependencies")
     print("2. Minimum + Development Dependencies")
@@ -126,36 +127,26 @@ def handle_dependency_tool():
             print("Using pip. Generating requirements.txt...")
             confirm_and_install_dependencies(selected_dependencies)
             generate_requirements(selected_dependencies)
-            subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
-            
+            subprocess.run(["pip", "install", *[f"{name}=={version}" for name, version in selected_dependencies.items()]], check=True)
         elif tool == "2 (poetry)":
-            print("Using Poetry. Initializing project...")
+            print("Using Poetry. Setting up pyproject.toml...")
             install_poetry()
-
-            # Initialize pyproject.toml if not present
             if not os.path.exists("pyproject.toml"):
                 subprocess.run(["poetry", "init", "--no-interaction"], check=True)
-
-            # Add dependencies
-            for name, version in selected_dependencies.items():
-                subprocess.run(["poetry", "add", f"{name}=={version}"], check=True)
-                
+            subprocess.run(["poetry", "add"] + [f"{name}=={version}" for name, version in selected_dependencies.items()], check=True)
         elif tool == "3 (pipenv)":
             print("Using Pipenv. Setting up Pipfile...")
             install_pipenv()
             confirm_and_install_dependencies(selected_dependencies)
             generate_requirements(selected_dependencies)
-            subprocess.run(["pipenv", "install", "-r", "requirements.txt"], check=True)
-            
+            subprocess.run(["pipenv", "install"] + [f"{name}=={version}" for name, version in selected_dependencies.items()], check=True)
         else:
             print(f"Unknown dependency tool: {tool}")
             sys.exit(1)
-            
     except subprocess.CalledProcessError as e:
         print(f"Error during dependency installation: {e}")
         print("Installation halted. Check the error message above for details.")
         sys.exit(1)
-
 
 if __name__ == "__main__":
     handle_dependency_tool()
