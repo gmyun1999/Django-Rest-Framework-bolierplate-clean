@@ -125,7 +125,7 @@ def handle_dependency_tool():
     print("tool, ", tool)
     try:
         if tool == "1 (pip)":
-            print("Using pip. Generating requirements.txt..."s)
+            print("Using pip. Generating requirements.txt...")
             confirm_and_install_dependencies(selected_dependencies)
             generate_requirements(selected_dependencies)
             subprocess.run(["pip", "install", *[f"{name}=={version}" for name, version in selected_dependencies.items()]], check=True)
