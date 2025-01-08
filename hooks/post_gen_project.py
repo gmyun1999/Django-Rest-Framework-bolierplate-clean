@@ -122,7 +122,6 @@ def handle_dependency_tool():
     update_dependency_version(selected_dependencies)
 
     tool = "{{ cookiecutter.dependency_tool }}"
-    print("tool, ", tool)
     try:
         if tool == "1 (pip)":
             print("Using pip. Generating requirements.txt...")
@@ -150,4 +149,5 @@ def handle_dependency_tool():
         sys.exit(1)
 
 if __name__ == "__main__":
-    handle_dependency_tool()
+    if "{{ cookiecutter.dependency_tool }}" != "4 (None)":
+        handle_dependency_tool()
