@@ -86,7 +86,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "{{cookiecutter.project_name}}.wsgi.application"
 
 # Database Configuration
-{% if cookiecutter.db_engine == "1" %}
+{% if cookiecutter.db_engine == "1 (PostgreSQL)" %}
 # PostgreSQL Configuration
 DATABASES = {
     "default": {
@@ -107,7 +107,7 @@ DATABASES = {
         },
     }
 }
-{% elif cookiecutter.db_engine == "2" %}
+{% elif cookiecutter.db_engine == "2 (MySQL)" %}
 # MySQL Configuration
 import pymysql
 DATABASES = {
@@ -123,7 +123,7 @@ DATABASES = {
         },
     }
 }
-{% elif cookiecutter.db_engine == "3" %}
+{% elif cookiecutter.db_engine == "3 (MongoDB)" %}
 # MongoDB Configuration
 DATABASES = {
     "default": {

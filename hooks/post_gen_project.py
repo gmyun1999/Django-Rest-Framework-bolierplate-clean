@@ -36,13 +36,11 @@ DEVELOPMENT_DEPENDENCIES = {
 }
 
 def display_dependencies(dependencies):
-    """Display dependencies with versions."""
     print("\nPlanned Dependencies:")
     for i, (name, version) in enumerate(dependencies.items(), start=1):
         print(f"{i}. {name}=={version}")
 
 def update_dependency_version(dependencies):
-    """Allow user to modify dependency versions."""
     while True:
         display_dependencies(dependencies)
         choice = input("Enter the number of the dependency to change or 'done' to proceed: ").strip()
@@ -58,7 +56,6 @@ def update_dependency_version(dependencies):
         dependencies[dep_name] = new_version
 
 def confirm_and_install_dependencies(dependencies):
-    """Confirm and install dependencies."""
     display_dependencies(dependencies)
     choice = input("Do you want to install these dependencies? (y/n): ").strip().lower()
     if choice != 'y':
@@ -66,13 +63,11 @@ def confirm_and_install_dependencies(dependencies):
         sys.exit(0)
 
 def generate_requirements(dependencies):
-    """Generate requirements.txt with chosen dependencies."""
     with open("requirements.txt", "w") as f:
         for name, version in dependencies.items():
             f.write(f"{name}=={version}\n")
 
 def install_poetry():
-    """Install Poetry based on the OS."""
     try:
         subprocess.run(["poetry", "--version"], check=True)
         print("Poetry is already installed.")
@@ -94,7 +89,6 @@ def install_poetry():
         print("Poetry installation completed.")
 
 def install_pipenv():
-    """Install Pipenv using pip."""
     try:
         subprocess.run(["pipenv", "--version"], check=True)
         print("Pipenv is already installed.")
@@ -104,7 +98,6 @@ def install_pipenv():
         print("Pipenv installation completed.")
 
 def handle_dependency_tool():
-    """Handle dependency tool based on user selection."""
     print("Do you want to install:")
     print("1. Minimum Dependencies")
     print("2. Minimum + Development Dependencies")
@@ -151,3 +144,5 @@ def handle_dependency_tool():
 if __name__ == "__main__":
     if "{{ cookiecutter.dependency_tool }}" != "4 (None)":
         handle_dependency_tool()
+        
+    print("Project setup completed.")
