@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.views import APIView
 
-from {{ project_slug }}.settings import ENV
+from {{ cookiecutter.project_slug }}.settings import ENV
 
 
 class HealthChecker(APIView):

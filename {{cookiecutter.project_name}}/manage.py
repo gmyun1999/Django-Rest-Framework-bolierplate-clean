@@ -5,7 +5,7 @@ import sys
 
 from django.apps import apps
 
-from {{ project_slug }} import settings
+from {{ cookiecutter.project_slug }} import settings
 
 
 def main():
