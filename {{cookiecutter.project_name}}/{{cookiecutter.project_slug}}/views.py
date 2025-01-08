@@ -1,9 +1,8 @@
-{% raw %}
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.views import APIView
 
-from "{{ cookiecutter.project_slug }}".settings import ENV
+from {{ cookiecutter.project_slug }}.settings import ENV
 
 
 class HealthChecker(APIView):
@@ -13,4 +12,3 @@ class HealthChecker(APIView):
             data={"status": "success", "ENV": ENV},
             status=status.HTTP_200_OK,
         )
-{% endraw %}
