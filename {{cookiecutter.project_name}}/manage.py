@@ -1,4 +1,3 @@
-{% raw %}
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
@@ -10,7 +9,7 @@ from {{ cookiecutter.project_slug }} import settings
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "macro_be.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{cookiecutter.project_slug}}.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -25,4 +24,3 @@ def main():
 if __name__ == "__main__":
     main()
     
-{% endraw %}
