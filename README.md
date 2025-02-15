@@ -29,7 +29,7 @@ pip install cookiecutter
 아래 명령어로 템플릿을 기반으로 프로젝트를 생성합니다:
 
 ```bash
-cookiecutter https://github.com/gmyun1999/Django-Rest-Framework-Boilerplate-Clean.git
+cookiecutter https://github.com/gmyun1999/Django-Rest-Framework-bolierplate-clean.git
 ```
 
 ### 3. 입력 값 설정
