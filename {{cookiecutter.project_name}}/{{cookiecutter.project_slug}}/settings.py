@@ -1,6 +1,6 @@
 from pathlib import Path
 import environ
-
+from decimal import ROUND_HALF_UP, DefaultContext
 
 # Initialize environment variables
 BASE_DIR = Path(__file__).resolve().parent.parent
