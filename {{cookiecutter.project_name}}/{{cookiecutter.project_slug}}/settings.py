@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ]
 
 # URL Configuration
-ROOT_URLCONF = "{{cookiecutter.project_name}}.urls"
+ROOT_URLCONF = "{{cookiecutter.project_slug}}.urls"
 
 # Templates
 TEMPLATES = [
@@ -83,7 +83,7 @@ TEMPLATES = [
 ]
 
 # WSGI Application
-WSGI_APPLICATION = "{{cookiecutter.project_name}}.wsgi.application"
+WSGI_APPLICATION = "{{cookiecutter.project_slug}}.wsgi.application"
 
 # Database Configuration
 {% if cookiecutter.db_engine == "1 (PostgreSQL)" %}
