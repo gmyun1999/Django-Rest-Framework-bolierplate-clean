@@ -42,7 +42,7 @@ def generate_secret_key():
 def create_env_file():
     secret_key = generate_secret_key()
     
-    # 프로젝트 루트 디렉토리 설정
+    # 프로젝트 루트 디렉터리 설정
     project_root = os.path.dirname(os.path.abspath(__file__))
     
     env_files = {
@@ -51,17 +51,14 @@ def create_env_file():
         ".prod.env": f"ENV=prod\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n"
     }
     
-    is_windows = platform.system().lower() == "windows"
-    
     for file, content in env_files.items():
         file_path = os.path.join(project_root, file)
-        if is_windows:
+        try:
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(content)
-        else:
-            subprocess.run(f'echo "{content}" > {file_path}', shell=True, check=True)
-    
-    print("환경 변수 파일이 생성되었습니다.")
+            print(f"{file} 파일이 생성되었습니다: {file_path}")
+        except Exception as e:
+            print(f"{file} 파일 생성 중 오류 발생: {e}")
 
 def display_dependencies(dependencies):
     print("\nPlanned Dependencies:")
