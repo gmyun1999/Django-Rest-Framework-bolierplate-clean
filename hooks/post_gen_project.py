@@ -41,16 +41,27 @@ def generate_secret_key():
 
 def create_env_file():
     secret_key = generate_secret_key()
-    env_content_common = f"SECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n"
-
+    
+    # 프로젝트 루트 디렉토리 설정
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    
     env_files = {
-        ".env": "ENV=\n" + env_content_common,
-        ".local.env": "ENV=localhost\n" + env_content_common,
-        ".prod.env": "ENV=prod\n" + env_content_common,
+        ".env": f"ENV=\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n",
+        ".local.env": f"ENV=localhost\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n",
+        ".prod.env": f"ENV=prod\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n"
     }
-
+    
+    is_windows = platform.system().lower() == "windows"
+    
     for file, content in env_files.items():
-        subprocess.run(f'echo "{content}" > {file}', shell=True, text=True)
+        file_path = os.path.join(project_root, file)
+        if is_windows:
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(content)
+        else:
+            subprocess.run(f'echo "{content}" > {file_path}', shell=True, check=True)
+    
+    print("환경 변수 파일이 생성되었습니다.")
 
 def display_dependencies(dependencies):
     print("\nPlanned Dependencies:")
@@ -161,5 +172,5 @@ def handle_dependency_tool():
 if __name__ == "__main__":
     if "{{ cookiecutter.dependency_tool }}" != "4 (None)":
         handle_dependency_tool()
-    
+    create_env_file()
     print("Project setup completed.")
