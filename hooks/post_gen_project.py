@@ -41,10 +41,10 @@ def generate_secret_key():
 
 def create_env_file():
     secret_key = generate_secret_key()
-    
-    # 프로젝트 루트 디렉터리 설정
-    project_root = os.path.dirname(os.path.abspath(__file__))
-    
+
+    # 최종 프로젝트 디렉토리를 현재 작업 디렉토리로 지정
+    project_root = os.getcwd()
+
     env_files = {
         ".env": f"ENV=\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n",
         ".local.env": f"ENV=localhost\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n",
