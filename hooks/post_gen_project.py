@@ -2,6 +2,7 @@ import os
 import subprocess
 import sys
 import platform
+import secrets
 
 # Constants for dependencies
 MINIMUM_DEPENDENCIES = {
@@ -34,6 +35,22 @@ DEVELOPMENT_DEPENDENCIES = {
     "drf-spectacular": "0.27.2",
     "boto3": "1.35.72",
 }
+
+def generate_secret_key():
+    return secrets.token_urlsafe(50)
+
+def create_env_file():
+    secret_key = generate_secret_key()
+    env_content_common = f"SECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n"
+
+    env_files = {
+        ".env": "ENV=\n" + env_content_common,
+        ".local.env": "ENV=localhost\n" + env_content_common,
+        ".prod.env": "ENV=prod\n" + env_content_common,
+    }
+
+    for file, content in env_files.items():
+        subprocess.run(f'echo "{content}" > {file}', shell=True, text=True)
 
 def display_dependencies(dependencies):
     print("\nPlanned Dependencies:")
@@ -144,5 +161,5 @@ def handle_dependency_tool():
 if __name__ == "__main__":
     if "{{ cookiecutter.dependency_tool }}" != "4 (None)":
         handle_dependency_tool()
-        
+    
     print("Project setup completed.")
