@@ -50,7 +50,7 @@ def create_env_file():
         ".local.env": f"ENV=localhost\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n",
         ".prod.env": f"ENV=prod\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n"
     }
-    
+    print(project_root)
     for file, content in env_files.items():
         file_path = os.path.join(project_root, file)
         try:
