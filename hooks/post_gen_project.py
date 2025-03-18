@@ -54,7 +54,7 @@ def create_env_file():
     for file, content in env_files.items():
         file_path = os.path.join(project_root, file)
         try:
-            with open(file_path, "w", encoding="utf-8") as f
+            with open(file_path, "w", encoding="utf-8") as f:
                 f.write(content)
             print(f"{file} 파일이 생성되었습니다: {file_path}")
         except Exception as e:
