@@ -50,13 +50,12 @@ def create_env_file():
         ".local.env": f"ENV=localhost\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n",
         ".prod.env": f"ENV=prod\nSECRET_KEY={secret_key}\nALLOWED_HOSTS=\nDB_PASSWORD=\nDB_HOST=\n"
     }
-    print(project_root)
     for file, content in env_files.items():
         file_path = os.path.join(project_root, file)
         try:
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(content)
-            print(f"{file} 파일이 생성되었습니다: {file_path}")
+            print(f"{file} env file created: {file_path}")
         except Exception as e:
             print(f"{file} 파일 생성 중 오류 발생: {e}")
 
